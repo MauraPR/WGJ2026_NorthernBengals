@@ -1,0 +1,49 @@
+:: StoryTitle {"position":"0,50"}
+Testing
+
+
+:: StoryData {"position":"0,200"}
+{
+  "ifid": "DE548580-F248-4B02-88D0-4472E12BDEA1",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "start": "Title Page",
+  "zoom": 1
+}
+
+:: Decline Boss's Request {"position":"575,200"}
+-- Not happy, will come back to takl with MC later?
+
+:: Accept Boss's Request {"position":"500,25"}
+-- Something idk
+
+
+:: Talking to boss {"position":"300,225"}
+-- Greets MC, says we have a lot to do maybe?
+-- "team player" or "we're all a family here"?
+
+[[Accept Boss's Request]]
+[[Decline Boss's Request]]
+
+:: Start Day 1 {"position":"300,100"}
+-- Description of weather? How MC feels? --
+-- "Here comes my boss"
+
+[[Greet boss->Talking to boss]]
+
+
+:: Start Game {"position":"150,225"}
+-- Brief description and how-to--
+-- Include role descriptions here--
+
+
+[[Start Day 1]]
+
+
+
+:: Title Page {"position":"150,100"}
+--Title page--
+-- Some info?--
+--With main image as bg--
+
+[[Start Game]]
