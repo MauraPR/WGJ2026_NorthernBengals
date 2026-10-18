@@ -6,12 +6,34 @@ Seas the Day
 /* for energy and conditional */
 <<set $dailyBucket = 0>>
 <<set $finalBucket = 0>>
-/* for audio and bg */
-<<set $locationSFX = "">>
+/* for bg */
 <<set $bgImage = "">>
 <<set $bgType = "">>
 <<set $bgLevel = 0>>
 <<set $bgUsesLevel = false>>
+/* for audio */
+<<cacheaudio "SFX-growl2" "audio/SFX_Dog_Growl_02.wav">>
+<<cacheaudio "SFX-growl1" "audio/SFX_Dog_Growl_02.wav">>
+<<cacheaudio "SFX-bark" "audio/SFX_Dog_Bark_01.wav">>
+<<cacheaudio "SFX-handwriting" "audio/Intro_SFX_Handwriting.wav">>
+<<cacheaudio "SFX-smoking" "audio/Day3_SFX_Smoking.wav">>
+<<cacheaudio "SFX-casino2" "audio/Day3_SFX_Casino_02.wav">>
+<<cacheaudio "SFX-casino1" "audio/Day3_SFX_Casino_01.wav">>
+<<cacheaudio "SFX-reception4" "audio/Day2_SFX_Reception_04.wav">>
+<<cacheaudio "SFX-reception3" "audio/Day2_SFX_Reception_03.wav">>
+<<cacheaudio "SFX-reception2" "audio/Day2_SFX_Reception_02.wav">>
+<<cacheaudio "SFX-reception1" "audio/Day2_SFX_Reception_01.wav">>
+<<cacheaudio "SFX-footstep-deck" "audio/Day2_SFX_footstep-deck.wav">>
+<<cacheaudio "SFX-footstep-running" "audio/Day1_SFX_footstep_running.wav">>
+<<cacheaudio "SFX-horn" "audio/Day1_SFX_Horn.wav">>
+<<cacheaudio "SFX-announcement" "audio/Day1_SFX_Announcement.wav">>
+<<cacheaudio "BG-goodEnding" "audio/Ending_GoodEnding_BG_Loop.wav">>
+<<cacheaudio "BG-badEnding" "audio/Ending_BadEnding_BG_Loop.wav">>
+<<cacheaudio "BG-goodDay" "audio/ConclusionPage_GoodDay_BG.wav">>
+<<cacheaudio "BG-badDay" "audio/ConclusionPage_BadDay_BG.wav">>
+<<cacheaudio "BG-okayDay" "audio/ConclusionPage_OkayDay_BG.wav">>
+<<cacheaudio "BG-waveSeagull" "audio/BG_Wave_Seagull_LOOP.wav">>
+
 
 
 :: StoryData {"position":"0,50"}
@@ -27,9 +49,13 @@ Seas the Day
 :: Endings {"position":"600,425"}
 
 <<if $finalBucket > 0>>
+  <<audio stop>>
+  <<audio "BG-goodEnding" play loop>>
   <<set $bgType = "good">>
   The text for the good ending
 <<else>>
+  <<audio stop>>
+  <<audio "BG-badEnding" play loop>>
   <<set $bgType = "bad">>
   the text for bad ending
 <</if>>
@@ -41,10 +67,12 @@ Conclusion of day 3
 - Next link takes to ending, text will depend on decisions
 
 <<if ($dailyBucket > 0)>> 
+  <<audio "BG-goodDay" play>>
 	<<set $bgType = "sunny">>
   <<set $bgLevel += 1>>
   Text for good day end
 <<elseif ($dailyBucket < 0)>>
+  <<audio "BG-badDay" play>>
 	<<set $bgType = "stormy">>
   <<set $bgLevel += 1>>
   text for bad day end
@@ -55,6 +83,7 @@ Conclusion of day 3
 </div>
 
 :: Day3_Elder_R3 {"position":"1150,550","size":"100,100"}
+<<audio "SFX-casino2" play>>
 <<set $bgType = "stormy">>
 <<set $bgLevel += 1>>
 Elder's third request
@@ -65,6 +94,7 @@ Elder's third request
 </div>
 
 :: Day3_Elder_R2 {"position":"1100,400","size":"100,100"}
+<<audio "SFX-casino1" play>>
 <<set $bgType = "stormy">>
 <<set $bgLevel += 1>>
 Elder's second request
@@ -74,17 +104,32 @@ Elder's second request
 [[PLACEHOLDER-BAD->Day3_Elder_R3][$dailyBucket -=5]]
 </div>
 
-:: Day3_Elder_R1 {"position":"1050,250","size":"100,100"}
-<<set $bgType = "sunny">>
-<<set $bgLevel += 1>>
-Elder's description, initial request
+:: Day3_Dog {}
+/* TODO */
+<<audio "SFX-bark" play>>
+
+:: Day3_Elder_R1-2 {}
+/* TODO */
+[[PLACEHOLDER->Day3_Dog]]
 
 <div class = "choice">
 [[PLACEHOLDER-GOOD->Day3_End][$dailyBucket +=20]]
 [[PLACEHOLDER-BAD->Day3_Elder_R2][$dailyBucket -=5]]
 </div>
 
+:: Day3_Elder_R1 {"position":"1050,250","size":"100,100"}
+<<audio "SFX-smoking" play>>
+<<set $bgType = "sunny">>
+<<set $bgLevel += 1>>
+Elder's description, initial request
+
+<div class = "choice">
+[[PLACEHOLDER->Day3_Elder_R1-2]]
+[[PLACEHOLDER->Day3_Elder_R1-2]]
+</div>
+
 :: Day3_Start {"position":"1000,100","size":"100,100"}
+<<audio "SFX-horn" play>>
 <<set $bgType = "sunny">>
 <<set $bgLevel += 1>>
 DAY 3 - Brief interaction with boss, dog. Old person has requests
@@ -101,10 +146,12 @@ Conclusion of day 2 end
 
 
 <<if ($dailyBucket > 0)>> 
+  <<audio "BG-goodDay" play>>
 	<<set $bgType = "sunny">>
   <<set $bgLevel += 1>>
   Text for good day end
 <<elseif ($dailyBucket < 0)>>
+  <<audio "BG-badDay" play>>
 	<<set $bgType = "stormy">>
   <<set $bgLevel += 1>>
   text for bad day end
@@ -114,25 +161,51 @@ Conclusion of day 2 end
 [[PLACEHOLDER->Day3_Start][$finalBucket += $dailyBucket,$dailyBucket = 0]]
 </div>
 
+:: Day2_Adult_R5 {}
+<<audio "SFX-footstep-deck" play>>
+
+[[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day2_End][$dailyBucket -=5]]
+:: Day2_Adult_R4 {}
+/* TODO */
+<<audio "SFX-reception4" play>>
+
+[[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day2_Adult_R5][$dailyBucket -=5]]
+
 :: Day2_Adult_R3 {"position":"775,550","size":"100,100"}
+<<audio "SFX-reception2" play>>
 <<set $bgType = "stormy">>
 <<set $bgLevel += 1>>
 Adult's third request
 
 <div class = "choice">
 [[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day2_End][$dailyBucket -=5]]
+[[PLACEHOLDER-BAD->Day2_Adult_R4][$dailyBucket -=5]]
 </div>
 
+:: Day2_Dog {}
+/* TODO */
+<<audio "SFX-growl2" play>>
+[[PLACEHOLDER->Day2_Adult_R3]]
+[[PLACEHOLDER->Day2_Adult_R3]]
+
 :: Day2_Adult_R2 {"position":"725,400","size":"100,100"}
+<<audio "SFX-reception3" play>>
 <<set $bgType = "stormy">>
 <<set $bgLevel += 1>>
 Adult's second request
 
 <div class = "choice">
-[[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day2_Adult_R3][$dailyBucket -=5]]
+[[PLACEHOLDER-GOOD->Day2_Dog][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day2_Dog][$dailyBucket -=5]]
 </div>
+
+:: Day2_Boss {}
+/* TODO */
+<<audio "SFX-horn" play>>
+
+[[PLACEHOLDER->Day2_Adult_R2]]
 
 :: Day2_Adult_R1 {"position":"675,250","size":"100,100"}
 <<set $bgType = "sunny">>
@@ -141,11 +214,12 @@ Adult's second request
 Adult's description, initial request
 
 <div class = "choice">
-[[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day2_Adult_R2][$dailyBucket -=5]]
+[[PLACEHOLDER-GOOD->Day2_Boss][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day2_Boss][$dailyBucket -=5]]
 </div>
 
 :: Day2_Start {"position":"625,100","size":"100,100"}
+<<audio "SFX-reception1" play>>
 <<set $bgType = "sunny">>
 <<set $bgLevel = 1>>
 
@@ -161,12 +235,13 @@ DAY 2 - Brief interaction with boss, dog. Adult has requests
 <<set $bgUsesLevel = true>>
 Conclusion of day 1
 
-
 <<if ($dailyBucket > 0)>> 
+  <<audio "BG-goodDay" play>>
 	<<set $bgType = "sunny">>
   <<set $bgLevel += 1>>
   Text for good day end
 <<elseif ($dailyBucket < 0)>>
+  <<audio "BG-badDay" play>>
 	<<set $bgType = "stormy">>
   <<set $bgLevel += 1>>
   text for bad day end
@@ -176,17 +251,24 @@ Conclusion of day 1
 [[On to the next day->Day2_Start][$finalBucket += $dailyBucket,$dailyBucket = 0]]
 </div>
 
+:: Day1_Dog {}
+/* TODO */
+<<audio "SFX-growl1" play>>
+[[PLACEHOLDER->Day1_End]]
+
 :: Day1_Kid_R3 {"position":"400,550","size":"100,100"}
 <<set $bgType = "stormy">>
 <<set $bgLevel += 1>>
 
 Kid's third Request
+
 <div class = "choice">
-[[Go to security office->Day1_End][$dailyBucket +=10]]
-[[Go buy chocolate->Day1_End][$dailyBucket -=5]]
+[[Go to security office->Day1_Dog][$dailyBucket +=10]]
+[[Go buy chocolate->Day1_Dog][$dailyBucket -=5]]
 </div>
 
 :: Day1_Kid_R2 {"position":"350,400","size":"100,100"}
+<<audio "SFX-footstep-running" play>>
 <<set $bgType = "stormy">>
 <<set $bgLevel = 1>>
 Kid's second Request
@@ -220,6 +302,7 @@ Before she could even blink, he was sprinting down the hallway at as fast as his
 </div>
 
 :: Day1_Kid_R1 {"position":"300,250","size":"100,100"}
+<<audio "SFX-announcement" play>>
 The cruise was not off to a promising start. Em Ploughy slouched against her chair behind the guest relations desk, rubbing her eyes and sighing deeply as the family she just finished assisting walked away happily. It was truly astounding the number of issues that could be resolved by a complementary meet and greet with Murphy the Moose. 
 
 Em Ploughy took a moment to center herself with a deep breath. It wouldn't do for a member of the esteemed Guest Relations team to be seen looking anything less than cheerful and enthusiastic to a nearly concerning degree. Sure, sitting behind a desk all day on a mega corporation’s themed cruise ship wasn’t her dream job, not by a long shot. But, at least she got to see the world! Even if it was just in fleeting glances stolen through the small window, she passed on her way to and from the crew quarters each day. 
@@ -239,9 +322,11 @@ Suddenly Em Ploughy was rolling onto the cold hard linoleum floor, the wheels of
 
 
 :: Day1_Start {"position":"250,100","size":"100,100"}
+<<audio "SFX-horn" play>>
 <<set $bgUsesLevel = true>>
 <<set $bgType = "sunny">>
 <<set $bgLevel = 1>>
+
 “Oh, hello Em Ploughy, it’s lovely to finally meet you! I assume you’ve received our welcome letter, yes? Excellent! My name is Dahler Bill, the executive manager of this fine cruise ship. Isn’t she a beauty?” You’re lucky to be on board, we don’t accept just anyone, you know. Well, good luck today, you’ll need it! I was just kidding.. Or was I? Haha! Anyways, don’t mess this up or you’ll be hearing from me. 
 
 
@@ -253,8 +338,9 @@ Suddenly Em Ploughy was rolling onto the cold hard linoleum floor, the wheels of
 
 
 :: Introduction {"position":"100,400","size":"100,100"}
-<<set $bgUsesLevel = false>>
-<<set $bgType = "yellow">>
+<<audio "BG-waveSeagull" stop>>
+<<audio "SFX-handwriting" play>>
+
 <div class = "letter">
 To our Newest Employee, 
 
@@ -273,6 +359,7 @@ Dahler Bill, Executive Manager
 </div>
 
 :: How to play {"position":"100,400","size":"100,100"}
+<<set $bgType = "opening">>
 <div class = "howto">
   <b> Welcome to Seas the day!</b>
 * This is a ‘choose your own adventure’ style visual novel. 
@@ -288,20 +375,18 @@ Are you ready to <b>seize the day</b> and protect your boundaries and energy?
 </div>
 
 :: Title_Page {"position":"100,200","size":"100,100"}
+<<audio "BG-waveSeagull" play>>
 <<set $bgUsesLevel = false>>
-<<set $bgType = "opening">>
+<<set $bgType = "banner">>
 
 <div class="title">
-  <h1> SEAS THE DAY</h1>
-</div>
-
-<div class="main-button">
-[[Learn how to play->How to play]]
+[[Play Seas The Day->How to play]]
 </div>
 
 :: StoryScript [script]
 // disables the back/forward navigation
-// Config.history.controls = false; 
+Config.history.controls = false;
+
 // stows away the side menu to start
 Config.ui.stowBarInitially = true;
 
@@ -327,11 +412,6 @@ document.body.classList.add(bgImage);
 <</script>>
 
 :: StoryStylesheet [stylesheet] {"position":"0,100"}
-.title {
-  color: #085a94;
-  size: 200%
-}
-
 .main-button a {
   display: block; 
   width: 200px; 
@@ -349,6 +429,30 @@ document.body.classList.add(bgImage);
   transform: scale(1.2)
 }
 
+.title a {
+  position: fixed;
+  left: 70%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  width: 340px;
+  padding: 18px;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #ffffffaa;
+  border-radius: 12px;
+  background: #085a9490;
+  color: white;
+  box-shadow: 0 0 20px #00000040;
+}
+
+.title a:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.passage-title-page #passages::before {
+  display: none;
+}
 .choice a {
   display: block; 
   width: 100%;
@@ -360,13 +464,13 @@ document.body.classList.add(bgImage);
   border-radius: 5px; 
   background: #9f9fb395; 
   color: #ffffff;
-  transition: 0.15 ease;
+  transition: 0.15s ease;
 }
 .choice a:hover {
   background: #9f9fb350; 
   border-color: #ffffff80;
 }
-.howto {
+/* .howto {
   background-image: url('img/bg-blue.png');
   background-size: cover;
 
@@ -374,11 +478,29 @@ document.body.classList.add(bgImage);
   padding: 2rem;
   opacity: 0.85;
   
-}
-.letter {
-  color: #53431f;
+} */
 
+#passages {
+  position: relative;
+  width: 80%;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 2rem;
+  z-index: 1;
 }
+
+#passages::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('img/bg-blue.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.8;
+  border-radius: 10px;
+  z-index: -1;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -389,7 +511,9 @@ body {
   background-position:center;
   background-repeat: no-repeat;
 }
-
+.bg-banner {
+  background-image: url('img/bg-banner.png');
+}
 .bg-opening {
   background-image: url('img/bg-opening.png');
 }
@@ -417,7 +541,7 @@ body {
 .bg-bad {
   background-image: url('img/bg-bad.png');
 }
-.bg-yellow {
+/* .bg-yellow {
   background-image: url('img/bg-yellow.png');
 }
 .bg-skyblue {
@@ -425,7 +549,7 @@ body {
 }
 .bg-blue {
   background-image: url('img/bg-blue.png');
-}
+} */
 /* .bg-purple {
   background-image: url('img/bg-purple.png');
 } */
