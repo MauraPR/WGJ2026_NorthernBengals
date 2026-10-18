@@ -1,0 +1,16 @@
+# Tweego
+tweego.exe
+LICENSE.txt
+storyformats
+licenses
+
+# Generated builds
+test.html
+*.html
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
