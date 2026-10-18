@@ -1,0 +1,142 @@
+:: StoryTitle
+Cruise Control
+
+
+:: StoryData
+{
+  "ifid": "DE548580-F248-4B02-88D0-4472E12BDEA1",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "zoom": 1
+}
+
+
+:: Day1_End {"position":"500,100","size":"100,100"}
+- Conclusion
+- Variables for whether good or bad? or should they be different passages?
+
+[[On to the next day->Day2_Start]]
+
+
+/* DAY 2 - Brief interaction with boss, dog. Adult has requests */
+
+
+:: Day1_Kid_R1 {"position":"300,250","size":"100,100"}
+-Kid's description, Request
+
+[[Call security->Day1_End]]
+[[Chase after him!->Day1_Kid_R2]]
+
+
+:: Day1_Kid_R2 {"position":"350,400","size":"100,100"}
+- Second Request
+
+[[Call security->Day1_End]]
+[[Accept the quest->Day1_Kid_R3]]
+
+
+:: Day1_Kid_R3 {"position":"400,550","size":"100,100"}
+- Third Request
+
+[[Go to security office->Day1_End]]
+[[Go buy chocolate->Day1_End]]
+
+
+:: Day1_Start {"position":"250,100","size":"100,100"}
+-- Boss introduction
+
+[[Got it->Day1_Kid_R1]]
+[[Nice to meet you too...->Day1_Kid_R1]]
+
+
+:: Day2_Adult_R1 {"position":"675,250","size":"100,100"}
+-Kid's description, Request
+
+[[PLACEHOLDER->Day2_End]]
+[[Chase after him!->Day2_Adult_R2]]
+
+
+:: Day2_Adult_R2 {"position":"725,400","size":"100,100"}
+- Second Request
+
+[[PLACEHOLDER->Day2_End]]
+[[Accept the quest->Day2_Adult_R3]]
+
+
+:: Day2_Adult_R3 {"position":"775,550","size":"100,100"}
+- Third Request
+
+[[PLACEHOLDER->Day2_End]]
+[[PLACEHOLDER->Day2_End]]
+
+
+:: Day2_End {"position":"875,100","size":"100,100"}
+- Conclusion
+- Variables for whether good or bad? or should they be different passages?
+
+[[PLACEHOLDER->Day3_Start]]
+
+/* DAY 3 - Brief interaction with boss, dog. Old person has requests */
+
+
+:: Day2_Start {"position":"625,100","size":"100,100"}
+- some interaction with the boss
+- appropriate bg depending on how day 1 ended
+
+[[PLACEHOLDER->Day2_Adult_R1]]
+[[PLACEHOLDER->Day2_Adult_R1]]
+
+
+:: Day3_Elder_R1 {"position":"1050,250","size":"100,100"}
+-Kid's description, Request
+
+[[PLACEHOLDER->Day3_End]]
+[[PLACEHOLDER->Day3_Elder_R2]]
+
+
+:: Day3_Elder_R2 {"position":"1100,400","size":"100,100"}
+- Second Request
+
+[[PLACEHOLDER->Day3_End]]
+[[PLACEHOLDER->Day3_Elder_R3]]
+
+
+:: Day3_Elder_R3 {"position":"1150,550","size":"100,100"}
+- Third Request
+
+[[PLACEHOLDER->Day3_End]]
+[[PLACEHOLDER->Day3_End]]
+
+
+:: Day3_End {"position":"1250,100","size":"100,100"}
+- Conclusion
+- Variables for whether good or bad? or should they be different passages?
+
+[[PLACEHOLDER->Endings]]
+
+/* ENDINGS - WIll work on this later*/
+
+
+:: Day3_Start {"position":"1000,100","size":"100,100"}
+- some interaction with the boss
+- appropriate bg depending on how day 1 ended
+
+[[PLACEHOLDER->Day3_Elder_R1]]
+[[PLACEHOLDER->Day3_Elder_R1]]
+
+
+:: Introduction {"position":"100,400","size":"100,100"}
+-- Brief description and how-to--
+-Assuming this is where the welcome letter goes
+-maintain title page, or use the "base bg"?
+
+[[Start Day 1->Day1_Start]]
+
+
+:: Title_Page {"position":"100,200","size":"100,100"}
+--Title page--
+--With main image as bg--
+
+[[Start Game->Introduction]]
+
+/* DAY 1 - Brief interaction with boss, dog. Kid has requests */
