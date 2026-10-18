@@ -1,0 +1,253 @@
+:: StoryTitle {"position":"0,150"}
+Seas the Day
+
+:: StoryInit
+/* GLOBAL VARS */
+/* for energy and conditional */
+<<set $dailyBucket = 0>>
+<<set $finalBucket = 0>>
+/* for audio and bg */
+<<set $locationSFX = "">>
+<<set $bgImage = "">>
+<<set $bgType = "">>
+<<set $bgLevel = 0>>
+
+
+:: StoryData {"position":"0,50"}
+{
+  "ifid": "DE548580-F248-4B02-88D0-4472E12BDEA1",
+  "format": "SugarCube",
+  "format-version": "2.30.0",
+  "start": "Title_Page",
+  "zoom": 1
+}
+
+
+
+:: Endings {"position":"600,425"}
+/* ENDINGS - WIll work on this later*/
+<<if $finalBucket > 0>>
+  <<set $bgType = "endinggood">>
+  The text for the good ending
+<<else>>
+  the text for bad ending
+<</if>>
+
+
+
+:: Day3_End {"position":"1250,100","size":"100,100"}
+Conclusion of day 3
+- Next link takes to ending, text will depend on decisions
+
+<<if ($dailyBucket > 0)>> 
+	<<set $bgType = "sunny">>
+  <<set $bgLevel += 1>>
+  Text for good day end
+<<elseif ($dailyBucket < 0)>>
+	<<set $bgType = "stormy">>
+  <<set $bgLevel += 1>>
+  text for bad day end
+<</if>>
+
+[[PLACEHOLDER->Endings][$finalBucket += $dailyBucket,$dailyBucket = 0]]
+
+:: Day3_Elder_R3 {"position":"1150,550","size":"100,100"}
+Elder's third request
+
+[[PLACEHOLDER-GOOD->Day3_End][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day3_End][$dailyBucket -=5]]
+
+:: Day3_Elder_R2 {"position":"1100,400","size":"100,100"}
+Elder's second request
+
+[[PLACEHOLDER-GOOD->Day3_End][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day3_Elder_R3][$dailyBucket -=5]]
+
+:: Day3_Elder_R1 {"position":"1050,250","size":"100,100"}
+Elder's description, initial request
+
+[[PLACEHOLDER-GOOD->Day3_End][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day3_Elder_R2][$dailyBucket -=5]]
+
+:: Day3_Start {"position":"1000,100","size":"100,100"}
+/* DAY 3 - Brief interaction with boss, dog. Old person has requests */
+DAY 3 - Brief interaction with boss, dog. Old person has requests
+- appropriate bg depending on how day 2 ended
+
+[[PLACEHOLDER-GOOD->Day3_Elder_R1][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day3_Elder_R1]]
+
+
+:: Day2_End {"position":"875,100","size":"100,100"}
+Conclusion of day 2 end
+
+<<if ($dailyBucket > 0)>> 
+	<<set $bgType = "sunny">>
+  <<set $bgLevel += 1>>
+  Text for good day end
+<<elseif ($dailyBucket < 0)>>
+	<<set $bgType = "stormy">>
+  <<set $bgLevel += 1>>
+  text for bad day end
+<</if>>
+
+[[PLACEHOLDER->Day3_Start][$finalBucket += $dailyBucket,$dailyBucket = 0]]
+
+:: Day2_Adult_R3 {"position":"775,550","size":"100,100"}
+Adult's third request
+
+[[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day2_End][$dailyBucket -=5]]
+
+:: Day2_Adult_R2 {"position":"725,400","size":"100,100"}
+Adult's second request
+
+[[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day2_Adult_R3][$dailyBucket -=5]]
+
+:: Day2_Adult_R1 {"position":"675,250","size":"100,100"}
+Adult's description, initial request
+
+[[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
+[[PLACEHOLDER-BAD->Day2_Adult_R2][$dailyBucket -=5]]
+
+:: Day2_Start {"position":"625,100","size":"100,100"}
+/* DAY 2 - Brief interaction with boss, dog. Adult has requests */
+DAY 2 - Brief interaction with boss, dog. Adult has requests
+- appropriate bg depending on how day 1 ended
+
+[[PLACEHOLDER->Day2_Adult_R1]]
+[[PLACEHOLDER->Day2_Adult_R1]]
+
+:: Day1_End {"position":"500,100","size":"100,100"}
+Conclusion of day 1
+
+<<if ($dailyBucket > 0)>> 
+	<<set $bgType = "sunny">>
+  <<set $bgLevel += 1>>
+  Text for good day end
+<<elseif ($dailyBucket < 0)>>
+	<<set $bgType = "stormy">>
+  <<set $bgLevel += 1>>
+  text for bad day end
+<</if>>
+
+[[On to the next day->Day2_Start][$finalBucket += $dailyBucket,$dailyBucket = 0]]
+
+:: Day1_Kid_R3 {"position":"400,550","size":"100,100"}
+Kid's third Request
+
+[[Go to security office->Day1_End][$dailyBucket +=10]]
+[[Go buy chocolate->Day1_End][$dailyBucket -=5]]
+
+
+:: Day1_Kid_R2 {"position":"350,400","size":"100,100"}
+Kid's second Request
+
+[[Call security->Day1_End][$dailyBucket +=10]]
+[[Accept the quest->Day1_Kid_R3][$dailyBucket -=5]]
+
+
+:: Day1_Kid_R1 {"position":"300,250","size":"100,100"}
+Kid's description, Initial request
+
+
+
+[[Call security->Day1_End][$dailyBucket +=10]]
+[[Chase after him!->Day1_Kid_R2][$dailyBucket -=5]]
+
+:: Day1_Start {"position":"250,100","size":"100,100"}
+/* DAY 1 - Brief interaction with boss, dog. Kid has requests */
+DAY 1 - Brief interaction with boss, dog. Kid has requests 
+- Boss introduction
+
+
+
+[[Got it->Day1_Kid_R1]]
+[[Nice to meet you too...->Day1_Kid_R1]]
+
+
+:: Introduction {"position":"100,400","size":"100,100"}
+- Brief description and how-to--
+- include the letter (or keep on diff passages)
+
+
+[[Start Day 1->Day1_Start]]
+
+
+
+:: Title_Page {"position":"100,200","size":"100,100"}
+SEAS THE DAY
+
+
+<<set $bgType = "opening">>
+
+
+[[Start Game->Introduction]]
+
+
+:: StoryScript [script]
+// disables the back/forward navigation
+Config.history.controls = false; 
+// stows away the side menu to start
+Config.ui.stowBarInitially = true;
+
+
+:: PassageFooter {"position":"0,200"}
+<<script>>
+var bgImage;
+if (State.variables.bgLevel > 0) {
+  bgImage = "bg-" + State.variables.bgType + State.variables.bgLevel;
+}
+else {
+  bgImage = "bg-" + State.variables.bgType;
+}
+console.log("footer:", bgImage);
+
+document.body.classList.forEach(clrBg => {
+  if (clrBg.startsWith('bg-')) {
+    document.body.classList.remove(clrBg);
+  }
+});
+
+document.body.classList.add(bgImage);
+<</script>>
+
+:: StoryStylesheet [stylesheet] {"position":"0,100"}
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh
+  }
+body {
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+.bg-opening {
+  background-image: url('img/bg-opening.png');
+}
+.bg-sunny1 {
+  background-image: url('img/bg-sunny1.png');
+}
+.bg-sunny2 {
+  background-image: url('img/bg-sunny2.png');
+}
+.bg-sunny3 {
+  background-image: url('img/bg-sunny3.png');
+}
+.bg-stormy1 {
+  background-image: url('img/bg-stormy1.png');
+}
+.bg-stormy2 {
+  background-image: url('img/bg-stormy2.png');
+}
+.bg-stormy3 {
+  background-image: url('img/bg-stormy3.png');
+}
+.bg-good {
+  background-image: url('img/bg-good.png');
+}
+.bg-bad {
+  background-image: url('img/bg-bad.png');
+}
