@@ -27,9 +27,12 @@ Seas the Day
 :: Endings {"position":"600,425"}
 /* ENDINGS - WIll work on this later*/
 <<if $finalBucket > 0>>
-  <<set $bgType = "endinggood">>
+  <<set $bgLevel = 0 >>
+  <<set $bgType = "good">>
   The text for the good ending
 <<else>>
+  <<set $bgLevel = 0 >>
+  <<set $bgType = "bad">>
   the text for bad ending
 <</if>>
 
