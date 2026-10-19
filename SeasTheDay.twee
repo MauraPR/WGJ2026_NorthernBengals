@@ -133,8 +133,6 @@ She leans down and the dog turns over completely for her to pet his belly. She s
 [[She gets back to work.->Day3_Elder_R3]]
 </div>
 
-:: Day3_Dog {}
-/* TODO */
 <<audio "SFX-bark" play>>
 :: Day3_Dog {"position":"1075,500","size":"100,100"}
 After that interaction, Em Ploughy’s head is pounding relentlessly. She rests her head on her hands for a moment, pressing her fingertips to her temples in an attempt to relieve the tension. Suddenly, Em Ploughy feels something cold against her leg. She looks down to find a dog touching her with its nose.
