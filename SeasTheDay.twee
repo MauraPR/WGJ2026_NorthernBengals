@@ -52,30 +52,33 @@ Seas the Day
   <<audio stop>>
   <<audio "BG-goodEnding" play loop>>
   <<set $bgType = "good">>
-  The text for the good ending
+  When the ship docked at port that morning, Em Ploughy exited with the passengers as they headed to their excursions for the day, suitcase in hand. Dahler Bill offered to promote her to be his third Executive Assistant, and she had just one word for him:
+  “No.”
+  Now, lounging on the beach and soaking up the sun with a tropical beverage in hand, Em feels energized and confident. She knows that no matter what the future holds for her, work related or otherwise, she will always have the confidence to advocate for herself. 
 <<else>>
   <<audio stop>>
   <<audio "BG-badEnding" play loop>>
   <<set $bgType = "bad">>
-  the text for bad ending
+  The horizon was obscured in the wake of the storm raging outside from Em Ploughy’s vantage point on the deck. Pelted by rain and hair whipping her face, she stands alone. She's well and truly trapped on the Great Dette after accepting a promotion to become Dahler Bill’s third Executive Assistant. 
+  She wonders how she ended up here, and when things started to go awry. Reflecting over the last 3 days, there’s one word she wishes she would have had the courage to use.
+  “No.”
 <</if>>
 
 
 
 :: Day3_End {"position":"1250,100","size":"100,100"}
 Conclusion of day 3
-- Next link takes to ending, text will depend on decisions
 
 <<if ($dailyBucket > 0)>> 
   <<audio "BG-goodDay" play>>
 	<<set $bgType = "sunny">>
   <<set $bgLevel += 1>>
-  Text for good day end
+  Em Ploughy is so energized after advocating for herself today! Even Sue Ingyou’s bad attitude couldn’t stop her from enjoying her newfound confidence. Hopefully, tomorrow Em can keep up the good work and continue to stand up for herself. 
 <<elseif ($dailyBucket < 0)>>
   <<audio "BG-badDay" play>>
 	<<set $bgType = "stormy">>
   <<set $bgLevel += 1>>
-  text for bad day end
+  Em Ploughy was exhausted after fulfilling all those requests. Sue Ingyou did a number on her self confidence, she could hardly believe she got away with sneaking those chips away from the table! At least Sue Ingyou left a good review for her. Hopefully, one day Em can find the courage to stand up for herself. 
 <</if>>
 
 <div class = "choice">
@@ -86,31 +89,78 @@ Conclusion of day 3
 <<audio "SFX-casino2" play>>
 <<set $bgType = "stormy">>
 <<set $bgLevel += 1>>
-Elder's third request
+The old woman is quickly spending Em Ploughy’s already limited funds! She’s ringing up a crazy bill! 
+
+“Um, I think the machine is working now,” Em Ploughy cringes and slowly reaches towards the machine, “I’m going to take my card back now.” 
+
+The old woman smacks her hand away and completely ignores her. “Say, you sure wasted a lot of my time today. You really should be compensating me.”
+
+Sue Ingyou momentarily tears her eyes away from the slot machine screen to light another cigarette. 
+
+“At least we’re in a smoking zone now” Em Ploughy mumbled.
+
+“The card dealer at that table over there isn’t paying attention, go grab me some chips!” The woman insists gleefully, “Make sure it’s the high value ones after everything you’ve put me through!” 
 
 <div class = "choice">
-[[PLACEHOLDER-GOOD->Day3_End][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day3_End][$dailyBucket -=5]]
+[[After 3 days of nonstop insanity, Em Ploughy has had enough, “NO! I will not be stealing! Go ahead and complain to my boss, I’m done! And give me my card back!” ->Day3_End][$dailyBucket +=20]]
+[[Em Ploughy sneaks over and snags some chips while the card dealer is distracted by the storm raging outside to appease the old woman.->Day3_End][$dailyBucket -=5]]
 </div>
 
 :: Day3_Elder_R2 {"position":"1100,400","size":"100,100"}
 <<audio "SFX-casino1" play>>
 <<set $bgType = "stormy">>
 <<set $bgLevel += 1>>
-Elder's second request
+When she arrives at the casino, the old woman is already in the well worn seat of a “Murphy the Moose Mines a Million” themed slot machine. 
+
+“Someone exited out of my game!” She griped, “You need to put your credit card in the machine so I can show you how it took my money!”
 
 <div class = "choice">
-[[PLACEHOLDER-GOOD->Day3_End][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day3_Elder_R3][$dailyBucket -=5]]
+[[Em Ploughy says no, this is ridiculous, and calls the casino staff over to resolve the issue.->Day3_End][$dailyBucket +=20]]
+[[Em Ploughy reluctantly gets her wallet out and inserts her credit card. She really doesn’t want to, but if Sue Ingyou complains, the boss will terminate her!->Day3_Elder_R4][$dailyBucket -=5]]
+</div>
+
+:: Day3_Dog_R2 {"position":"1300,775","size":"100,100"}
+Dahler Bill responds saying he doesn't have time to deal with the dog right now. He tells her to find the owner or call security. One more thing for her to do list...
+
+<div class = "choice">
+[[She gets back to work.->Day3_Elder_R3]]
+</div>
+
+:: Day3_Dog_R1 {"position":"1150,675","size":"100,100"}
+She leans down and the dog turns over completely for her to pet his belly. She spends a couple of minutes happily petting Bandit until he releases slight huff and gets up to continue his adventure.
+
+<div class = "choice">
+[[She gets back to work.->Day3_Elder_R3]]
 </div>
 
 :: Day3_Dog {}
 /* TODO */
 <<audio "SFX-bark" play>>
+:: Day3_Dog {"position":"1075,500","size":"100,100"}
+After that interaction, Em Ploughy’s head is pounding relentlessly. She rests her head on her hands for a moment, pressing her fingertips to her temples in an attempt to relieve the tension. Suddenly, Em Ploughy feels something cold against her leg. She looks down to find a dog touching her with its nose.
+
+The dog shifts to its side, slightly lifting its leg in the air with what looks like a smile on his face. 
+
+Em Ploughy coos, "Bandit, are you asking for a belly rub?" 
+
+<div class = "choice">
+[[ Pet the dog.->Day3_Dog_R1]]
+[[ Ignore the dog and call Dahler Bill.->Day3_Dog_R2]]
+</div>
 
 :: Day3_Elder_R1-2 {}
-/* TODO */
-[[PLACEHOLDER->Day3_Dog]]
+Sue Ingyou was a challenging woman to please. On her t-shirt, Murphy the Moose proudly proclaimed his signature catchphrase “Believe in the magic of kindness!” Em Ploughy had a hard time imagining this woman held such a belief. 
+
+“So you’re telling me,” the woman hissed, “That I pay thousands of dollars to come on this luxury cruise and I can’t even smoke inside?”  
+
+Doing her best to keep the thousand watt smile in place, Em Ploughy said “We have designated smoking areas located throughout the ship in specific outdoor areas and select casino zones. I can print you a map if—”
+
+“That’s why I came here! Before you interrupted me with all of that nonsense about smoking not being allowed, I was hoping to get some decent help, which seems to be in short supply,” Sue Ingyou reprimanded, eyeing Em Ploughy up and down. “There’s something wrong with the slot machine in the casino, it stole my money! You need to come fix it now or I’m going to file a complaint to your boss.” 
+
+<div class = "choice">
+[[Em Ploughy calls the casino staff for help, it isn’t her job to help with the slot machines.->Day3_End][$dailyBucket +=20]]
+[[Em Ploughy doesn’t want to risk her job by saying no. She agrees to meet the old woman at the casino in an hour to take a look at the faulty slot machine.->Day3_Dog][$dailyBucket -=5]]
+</div>
 
 <div class = "choice">
 [[PLACEHOLDER-GOOD->Day3_End][$dailyBucket +=20]]
@@ -121,114 +171,172 @@ Elder's second request
 <<audio "SFX-smoking" play>>
 <<set $bgType = "sunny">>
 <<set $bgLevel += 1>>
-Elder's description, initial request
+“Ma’am, please put that cigarette out,” Em Ploughy chirped in what she hoped was a friendly and unthreatening tone, “This is a no smoking zone.” 
+
+The old woman narrowed her eyes and took a deep inhale of her cigarette, blowing the smoke directly into Em Ploughy’s face as she pondered, “Is that so?”
+
+With her jaw clenched, Em Ploughy takes a soothing breath and smiles as bright as the sun, just as the Executive Director advises all Guest Relations Agents to do when assisting passengers. 
+
+The old woman, who had introduced herself to Em Ploughy as Sue Ingyou in a tone that made it clear her name was on the VIP (Very Indiscreet Purchaser) list, was disgruntled by many aspects of the cruise. She had let Em Ploughy know that she’d been standing at the desk waiting for her for the past 30 minutes. The view from her room isn't as scenic as in the brochure, the boat’s engines are too loud, they won’t let her smoke in the dining hall, the water isn’t blue enough, the salty air makes her joints hurt, there’s too many kids on the family-friendly themed cruise…
 
 <div class = "choice">
-[[PLACEHOLDER->Day3_Elder_R1-2]]
-[[PLACEHOLDER->Day3_Elder_R1-2]]
+[[Em Ploughy rolls her eyes discreetly.->Day3_Elder_R2]]
+[[Em Ploughy smiles and nods sympathetically.->Day3_Elder_R2]]
+</div>
+
+
+:: Day3_Boss_R2 {"position":"1000,375","size":"100,100"}
+"I knew you would agree, thank you! Such a team player! Maybe I’ll consider promoting you to be my third Executive Assistant. I really do need all the help I can get. Sometimes, it feels like I’m the only one that does anything around here. It truly is lonely at the top." With that, Dahler Bill walks out of the Guest Relations office.
+
+<div class = "choice">
+[[Em Ploughy tries to forget this encounter. ->Day3_Elder_R1]]
+</div>
+
+:: Day3_Boss_R1 {"position":"925,250","size":"100,100"}
+"Why do you have to be such a downer? You’re just like this gloomy weather outside. You should lighten up a bit. This is a fun workplace, and many girls would be grateful to work here. I'll take care of it this time. But, in the meantime, you should rethink your attitude." With that, Dahler Bill walks out of the Guest Relations office.
+
+<div class = "choice">
+[[Em Ploughy tries to forget this encounter. ->Day3_Elder_R1]]
 </div>
 
 :: Day3_Start {"position":"1000,100","size":"100,100"}
 <<audio "SFX-horn" play>>
 <<set $bgType = "sunny">>
 <<set $bgLevel += 1>>
-DAY 3 - Brief interaction with boss, dog. Old person has requests
-- appropriate bg depending on how day 2 ended
+Dahler Bill visits Em Ploughy at her desk before the guests start to wake up for the day to get breakfast. “I hate this weather, it really doesn’t work well with my suit. How do I look?”
+
+Em Ploughy could not be any less interested in her boss’s wardrobe, but replies: “I think your suit looks lovely” in a sickly sweet tone. 
+
+"You know, I don't really care what you think of me,” Dahler Bill retorts matter of factly, “Just make sure to do a good job, no, a SPECTACULAR job, and that everyone leaves with a smile on their face."
+
+“Speaking of, could you take pictures of all the employees for our new ID badges? I think it would be a nice personal touch.”
 
 <div class = "choice">
-[[PLACEHOLDER-GOOD->Day3_Elder_R1][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day3_Elder_R1]]
+[[No.->Day3_Boss_R1][$dailyBucket +=20]]
+[[Yes.->Day3_Boss_R2]]
 </div>
-
 
 :: Day2_End {"position":"875,100","size":"100,100"}
 Conclusion of day 2 end
-
 
 <<if ($dailyBucket > 0)>> 
   <<audio "BG-goodDay" play>>
 	<<set $bgType = "sunny">>
   <<set $bgLevel += 1>>
-  Text for good day end
+  Em Ploughy is so energized after advocating for herself today! Lying in her standard triple bunk bed in the crew quarters, in the middle bunk of course, she thinks about how obsessed adults like Bea Princess sure need to get a grip. Murphy the Moose wasn’t even that magical, and his merch was kinda tacky! Hopefully, tomorrow Em can keep up the good work and continue to stand up for herself. 
 <<elseif ($dailyBucket < 0)>>
   <<audio "BG-badDay" play>>
 	<<set $bgType = "stormy">>
   <<set $bgLevel += 1>>
-  text for bad day end
+  Em Ploughy was exhausted after fulfilling all those requests. Lying in her standard triple bunk bed in the crew quarters, in the middle bunk of course, she thinks about how obsessed adults like Bea Princess sure need to get a grip. Murphy the Moose wasn’t even that magical, and his merch was kinda tacky! Hopefully, tomorrow Em can find the courage to stand up for herself. 
 <</if>>
 
 <div class = "choice">
-[[PLACEHOLDER->Day3_Start][$finalBucket += $dailyBucket,$dailyBucket = 0]]
+[[On to the next day->Day3_Start][$finalBucket += $dailyBucket,$dailyBucket = 0]]
 </div>
 
 :: Day2_Adult_R5 {}
 <<audio "SFX-footstep-deck" play>>
+Em Ploughy goes for a brisk walk out by the pool as she is heading to her room for the night. Turning a corner, she suddenly bumps into Bea Princess. “Ugh, where were you? I’ve been looking forward to going swimming in the pool all day, and when I finally got there tonight, it was closed! This is absolutely absurd! Guests should be allowed to swim whenever they want, we are paying customers! Can’t you just let me in?”
 
-[[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day2_End][$dailyBucket -=5]]
+<div class = "choice">
+[[Em Ploughy calmly blares out “Bea Princess, it's not going to happen. Good night and goodbye.”->Day2_End][$dailyBucket +=20]]
+[[Em Ploughy politely tells her that it is closed for the night and to try again tomorrow. The company will give her a gift voucher for her troubles.->Day2_End][$dailyBucket -=5]]
+</div>
+
 :: Day2_Adult_R4 {}
-/* TODO */
+/* TODO - bg */
 <<audio "SFX-reception4" play>>
+Em Ploughy looks up at the clock, nodding her head at every ‘tick’ that goes by. Her shift will finally be over in a few short minutes, but not before Bea Princess storms in to have another word with her. “Oh my gosh, I can’t believe I missed the meet and greet with Murphy the Moose! I set a timer on my phone, but it never went off. I REALLY want to meet him, I’ve looked up to him ever since I was a child, he is my favourite! Oh would you please go and find him for me, and tell him to come back? I need to get a picture with him, you have no idea how long I’ve waited for this!
 
-[[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day2_Adult_R5][$dailyBucket -=5]]
+<div class = "choice">
+[[Em Ploughy says that her shift is over and she can no longer accommodate her request.->Day2_End][$dailyBucket +=20]]
+[[Em Ploughy confirms that Murphy the Moose is clocked out for the day, but Bea Princess can be first in line tomorrow.->Day2_Adult_R5][$dailyBucket -=5]]
+</div>
 
 :: Day2_Adult_R3 {"position":"775,550","size":"100,100"}
 <<audio "SFX-reception2" play>>
 <<set $bgType = "stormy">>
 <<set $bgLevel += 1>>
-Adult's third request
+Em Ploughy warily eyes Bea Princess marching over towards her desk yet again. “I bought a cute headband at the gift shop, but the wind on the deck knocked it off my head and sent it straight into the ocean. I didn’t keep the receipt, but it’s such a small item, do you think I could get a new pair?”
 
 <div class = "choice">
-[[PLACEHOLDER-GOOD->Day2_End][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day2_Adult_R4][$dailyBucket -=5]]
+[[Em Ploughy states that her request isn’t possible without a proof of purchase.->Day2_End][$dailyBucket +=20]]
+[[Em Ploughy tells Bea Princess that she will be reimbursed for the loss of her item.->Day2_Adult_R4][$dailyBucket -=5]]
 </div>
 
+:: Day2_Dog_R2 {"position":"775,850","size":"100,100"}
+ Em Ploughy keeps the dog nearby until her boss rushes in. The dog spooks and takes off, with Dahler Bill following closely behind. The shouting gradually gets farther away as Em Ploughy settles back at her desk with a sigh. As soon as she gets comfortable, she hears someone coming up behind her.
+
+<div class = "choice">
+[[She turns to see who it is, though she has her suspisions.->Day2_Adult_R3]]
+</div>
+
+:: Day2_Dog_R1 {"position":"650,850","size":"100,100"}
+ Em Ploughy spends some time entertaining the dog until someone in the distance calls his name and he takes off with the toy. “That was a nice break.” She settles back at her desk with a sigh. As soon as she gets comfortable, she hears someone coming up behind her.
+
+<div class = "choice">
+[[She turns to see who it is, though she has her suspisions.->Day2_Adult_R3]]
+</div>
 :: Day2_Dog {}
 /* TODO */
 <<audio "SFX-growl2" play>>
-[[PLACEHOLDER->Day2_Adult_R3]]
-[[PLACEHOLDER->Day2_Adult_R3]]
+"Bark! Bark!"
+
+Well would you look at that, even dogs demand something here.
+
+With a laugh, Em Ploughy asks: "Hello again Bandit. I hear you're in trouble with the boss?"
+
+The dog sits down in front of her. Em Ploughy leans over her desk and notices that there's a ball waiting in front of her.
+
+Her smile grows, "You want to play?"
+
+<div class = "choice">
+[[Play with the dog.->Day2_Dog_R1]]
+[[ Report the loose dog to Dahler Bill.->Day2_Dog_R2]]
+</div>
 
 :: Day2_Adult_R2 {"position":"725,400","size":"100,100"}
 <<audio "SFX-reception3" play>>
 <<set $bgType = "stormy">>
 <<set $bgLevel += 1>>
-Adult's second request
+30 minutes later, Em Ploughy came back to her desk after stuffing herself with a good lunch. She felt sleepy and hoped she was hallucinating when the young woman with a brand-new headband came waltzing back over to her desk. She showed Em Ploughy a picture of a snowglobe on her phone, claiming it was a rare special edition sold by the cruise line 10 years ago. “I know it’s so long ago, but could you go check in the back somewhere and find out if you still have any left? It would go GREAT with the rest of my collection!”
 
 <div class = "choice">
-[[PLACEHOLDER-GOOD->Day2_Dog][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day2_Dog][$dailyBucket -=5]]
+[[Em Ploughy reiterates that they are completely sold out and no longer available, anywhere.->Day2_Dog][$dailyBucket +=20]]
+[[Em Ploughy knows that these snowglobes are extinct, but offers to go ask her manager for information.->Day2_Dog][$dailyBucket -=5]]
 </div>
 
 :: Day2_Boss {}
 /* TODO */
 <<audio "SFX-horn" play>>
+Dahler Bill strolls up to Em Ploughy’s desk, and while adjusting his crooked tie, he starts in on her, “Hey there, how’s it going? Don’t actually answer, I don’t care. I’ve noticed an abnormal amount of obsessed adults here, don’t these people have jobs? Either way, I hope you treat them like royalty. I just wanted to warn you that some passengers have complained about some loose dogs running around. If you see any that are unleashed or misbehaving, knock some sense into them will ya? Literally or not, it’s up to you.”
 
-[[PLACEHOLDER->Day2_Adult_R2]]
+<div class = "choice">
+[[Whatever you say, boss!->Day2_Adult_R2]]
+[[....->Day2_Adult_R2]]
+</div>
 
 :: Day2_Adult_R1 {"position":"675,250","size":"100,100"}
 <<set $bgType = "sunny">>
 <<set $bgLevel += 1>>
 
-Adult's description, initial request
+First Request - Obsessed Adult
+Bea Princess suddenly appears in front of Em Ploughy’s desk, “Hey, I forgot to pack some sunscreen, I must have left it on my dresser at home. Do you happen to have some with you, maybe just a sample or something? I only need it for my face!”
 
 <div class = "choice">
-[[PLACEHOLDER-GOOD->Day2_Boss][$dailyBucket +=20]]
-[[PLACEHOLDER-BAD->Day2_Boss][$dailyBucket -=5]]
+[[Em Ploughy explains that there are no free samples and she will have to purchase sunscreen herself.->Day2_Boss][$dailyBucket +=20]]
+[[Em Ploughy hands over a small sample sized packet of sunscreen to Bea Princess.->Day2_Boss][$dailyBucket -=5]]
 </div>
 
 :: Day2_Start {"position":"625,100","size":"100,100"}
 <<audio "SFX-reception1" play>>
 <<set $bgType = "sunny">>
 <<set $bgLevel = 1>>
-
-DAY 2 - Brief interaction with boss, dog. Adult has requests
-- appropriate bg depending on how day 1 ended
+Em Ploughy is comfortably sitting at her desk, daydreaming about what she will have for her lunch. As she’s imagining what the chefs have whipped up for today, a young woman is walking towards Em Ploughy’s desk, maintaining eye contact the whole way. “Hi, I’m Bea Princess, nice to meet you! I can’t believe I’m actually on this cruise, I’ve been saving money for years! I can’t wait to go down the huge slide, swim in the pool, and buy all the cute merchandise in the gift shop! I sure hope nothing I want is out of stock, that would be my worst nightmare. You don’t wanna see me if that happens…” Em Ploughy started zoning out of the conversation while Bea rambled on about her current obsessions and favourite fandoms.
 
 <div class = "choice">
-[[PLACEHOLDER->Day2_Adult_R1]]
-[[PLACEHOLDER->Day2_Adult_R1]]
+[[Hopefully that was the last Em sees of her...->Day2_Adult_R1]]
 </div>
 
 :: Day1_End {"position":"500,100","size":"100,100"}
@@ -239,43 +347,83 @@ Conclusion of day 1
   <<audio "BG-goodDay" play>>
 	<<set $bgType = "sunny">>
   <<set $bgLevel += 1>>
-  Text for good day end
+  Em Ploughy is energized after advocating for herself today! The security team was able to identify the child as Rex Evyting. Sweet little Rex had escaped the “Dress like Your Favorite Aquatic Character for a Dance Part and Photo Op” meetup, at which the popular characters Diego the Dolphin and Serenity the Shark could be found in abundance. Rex was reunited with his father, who had failed to notice that the rascal had vacated the premises. Diego the Dolphin was his favorite character after all, and he deserved a chance to lose himself in the theme music and have fun too! How could he be expected to keep tabs on a wily 5-year-old under such conditions? Hopefully tomorrow Em can keep up the good work and continue to stand up for herself. 
 <<elseif ($dailyBucket < 0)>>
   <<audio "BG-badDay" play>>
 	<<set $bgType = "stormy">>
   <<set $bgLevel += 1>>
-  text for bad day end
+  Em Ploughy is exhausted after fulfilling all those requests. After getting the child some candy and trekking back to the security office, the child was identified as Rex Evyting. Sweet little Rex had escaped the “Dress like Your Favorite Aquatic Character for a Dance Part and Photo Op” meetup, at which the popular characters Diego the Dolphin and Serenity the Shark could be found in abundance. Rex was reunited with his father, who had failed to notice that the rascal had vacated the premises. Diego the Dolphin was his favorite character after all, and he deserved a chance to lose himself in the theme music and have fun too! How could he be expected to keep tabs on a wily 5-year-old under such conditions? Hopefully tomorrow Em can find the courage to stand up for herself. 
 <</if>>
 
 <div class = "choice">
 [[On to the next day->Day2_Start][$finalBucket += $dailyBucket,$dailyBucket = 0]]
 </div>
 
-:: Day1_Dog {}
-/* TODO */
+:: Day1_Dog_R2 {"position":"575,475","size":"100,100"}
+Em Ploughy sits down and continues to work. The dog eventually settles down by her feet. By the time the owners come around asking for help, he has calmed down and is ready to go back with them. They are thankful that Em Ploughy caught their dog, and agree to put in a good word with Dahler Bill if she doesn’t report their beloved and well trained emotional support animal, Bandit.
+
+<div class = "choice">
+[[You've got a deal!->Day1_End]]
+</div>
+
+:: Day1_Dog_R1 {"position":"575,600","size":"100,100"}
+The dog lets Em Ploughy pet him and reach for the leash. His eyes look drained, and he’s panting up a storm. She holds on tightly to the leash and waits until the owners start to catch up. Once they’re in her line of sight, she gestures towards the owners and hands over the pup. They are thankful that Em Ploughy caught their dog, and agree to put in a good word with Dahler Bill if she doesn’t report their beloved and well trained emotional support animal, Bandit.
+
+<div class = "choice">
+[[You've got a deal!->Day1_End]]
+</div>
+
+:: Day1_Dog {"position":"500,350","size":"100,100"}
 <<audio "SFX-growl1" play>>
-[[PLACEHOLDER->Day1_End]]
+When Em Ploughy finally gets back to her desk, she throws herself into the comforting embrace of her trusty chair. There are parts of her body hurting that she didn't even know existed. Em Ploughy is massaging her sore legs when she hears shouting in the distance. She looks up to see a loose dog running with his leash in its mouth. 
+
+“Since when are pets allowed on this cruise?” she wonders, then promptly decides she doesn’t have the energy to care. 
+
+A couple is chasing after him while he runs in circles around them. He stops behind a chair and looks right at them. They're clearly out of breath, but they try to circle around the chair to secure him. Just before they're able to catch him, he jumps up and takes off once again. The couple shoot each other an annoyed look, take a deep breath, and start their chase anew.
+
+As they slowly exit her view down the hallway, Em Ploughy goes back to her work. Shortly after, she looks up to see the dog quickly running towards her, no owner in sight. Startled, Em Ploughy stands up and the dog barres into her legs. He looks up at her with the leash in his mouth and drops it. 
+
+<div class = "choice">
+[[Try to get the leash and call his owners->Day1_Dog_R1]]
+[[Ignore the situation and go back to work..->Day1_Dog_R2]]
+</div>
 
 :: Day1_Kid_R3 {"position":"400,550","size":"100,100"}
 <<set $bgType = "stormy">>
 <<set $bgLevel += 1>>
 
-Kid's third Request
+Em Ploughy remembers the stockpile of Murphy the Moose shaped lollipops hoarded in the bottom drawer of her desk and proclaims “Hello dolphin friend! If you swim back to my desk with me, I can give you a super special dolphin lollipop!”  
+
+The child considers her offer, “Two lollipops.” 
+
+Breathing out a sign of relief, Em Ploughy agrees.  
+
+While taking the employee hallways back to the Guest Relations desk, they come to a fork in their path. The sign says “Security Office” with an arrow pointing left. Em Ploughy’s desk is to the right. She stared at the sign, exhausted, and wishing dearly to pass the child off to someone more qualified. 
 
 <div class = "choice">
-[[Go to security office->Day1_Dog][$dailyBucket +=10]]
-[[Go buy chocolate->Day1_Dog][$dailyBucket -=5]]
+[[Go left and hope for their sakes that there's some candy in that office.->Day1_Dog][$dailyBucket +=10]]
+[[Go right and get the child some candy before dropping him off. Em Ploughy needs to make sure that all guests have the most magical experience possible or there will be consequences.->Day1_Dog][$dailyBucket -=5]]
 </div>
 
 :: Day1_Kid_R2 {"position":"350,400","size":"100,100"}
 <<audio "SFX-footstep-running" play>>
 <<set $bgType = "stormy">>
 <<set $bgLevel = 1>>
-Kid's second Request
+Muttering a word under her breath that would almost certainly get her written up, Em Ploughy took off after the child. 
+
+For being no more than five years old, the child could run at an unbelievably fast pace, and for such a long time! He tore through hallway after hallway, up and down the stairwells, and across a mercifully empty VIP deck. He stayed far outside her grasp. Often, the only indicators that Em Ploughy was heading in the right direction were the rhythmic pitter patter of his slippered feet, fiendish giggles, and the occasional breathy declaration of “DOLPHIN POWER!” 
+
+Upon reaching the top of the umpteenth stairwell, she closed her eyes and leaned forward to catch her breath. She leaned her sweat drenched forehead against the cool wall, contemplating what it said about her abilities as a Guest Relations Agent that a child was able to outrun and outsmart her. Huffing, puffing, and cursing the day dolphins were discovered, she decided to cut her losses and call security in shame back at the comfort of her desk. 
+
+“Hi,” a voice breathes in her ear.
+
+Em Ploughy jumped and let out an embarrassing squeak before finding herself looking down at the child in the shark onesie yet again. 
+
+“Do you have any candy? Dolphins love candy, and candy is their favorite food.” 
 
 <div class = "choice">
-[[Call security->Day1_End][$dailyBucket +=10]]
-[[Accept the quest->Day1_Kid_R3][$dailyBucket -=5]]
+[[Em Ploughy has had enough! Screw this kid and his candy! Em Ploughy calls security and lets him be their problem->Day1_Dog][$dailyBucket +=10]]
+[[Em Ploughy decides to get the dolphin some candy in order to avoid further upset. Guest Relations Agents have been fired for much less than an unhappy child!->Day1_Kid_R3][$dailyBucket -=5]]
 </div>
 
 :: Day1_Kid_R1-2 {}
@@ -326,15 +474,17 @@ Suddenly Em Ploughy was rolling onto the cold hard linoleum floor, the wheels of
 <<set $bgUsesLevel = true>>
 <<set $bgType = "sunny">>
 <<set $bgLevel = 1>>
+Em Ploughy sits stiffly behind her new desk, waiting to meet her boss start her day as a Guest Relations Agent aboard the Great Dette.
 
-“Oh, hello Em Ploughy, it’s lovely to finally meet you! I assume you’ve received our welcome letter, yes? Excellent! My name is Dahler Bill, the executive manager of this fine cruise ship. Isn’t she a beauty?” You’re lucky to be on board, we don’t accept just anyone, you know. Well, good luck today, you’ll need it! I was just kidding.. Or was I? Haha! Anyways, don’t mess this up or you’ll be hearing from me. 
+“Oh, hello Em Ploughy, it’s lovely to finally meet you! I assume you’ve received our welcome letter, yes? Excellent! My name is Dahler Bill, the executive manager of this fine cruise ship. Isn’t she a beauty?” You’re lucky to be on board, we don’t accept just anyone, you know. Well, good luck today, you’ll need it! I was just kidding.. Or was I? Haha! Anyways, don’t mess this up or you’ll be hearing from me."
 
-
+With that encouraging message out of the way, Dahler Bill turns to walk away and leaves Em to sit at her desk and await her first passenger...
 
 <div class = "choice">
-[[Got it->Day1_Kid_R1]]
+[[Got it!->Day1_Kid_R1]]
 [[Nice to meet you too...->Day1_Kid_R1]]
 </div>
+
 
 
 :: Introduction {"position":"100,400","size":"100,100"}
